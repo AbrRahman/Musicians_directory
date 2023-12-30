@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{%block title%}
+Album Form
+{%endblock%}
+
+{%block content%}
+    {%load crispy_forms_tags%}
+    <h1 class="text-center my-2">Album Form</h1>
+    <form action="" method="post" style="width:50%;margin:30px auto">
+        {%csrf_token%}
+    {{form|crispy}}
+    <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+{%endblock%}
