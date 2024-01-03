@@ -15,7 +15,9 @@
         <th scope="col">Instrument Type</th>
         <th scope="col">Album Name</th>
         <th scope="col">Release Date</th>
+        {% if user.is_authenticated %}
         <th scope="col">Actions</th>
+        {% endif%}
       </tr>
     </thead>
     <tbody>
@@ -28,10 +30,12 @@
         <td>{{d.musician.instrument_type}}</td>
         <td>{{d.album_name}}</td>
         <td>{{d.release_date}}</td>
+        {% if user.is_authenticated %}
         <td>
             <a class="btn btn-sm btn-primary" href={%url "edit_album" d.id%}>Edit</a>
             <a class="btn btn-sm btn-danger" href={%url "delete_album" d.id%}>Delete</a>
         </td>
+        {% endif %}
       </tr>
       {%endfor%}
     </tbody>

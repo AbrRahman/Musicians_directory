@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from album.forms import AlbumForm
 from album.models import AlbumModel
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required
 def add_album(request):
     if request.method=="POST":
         album_form=AlbumForm(request.POST)
@@ -13,6 +15,7 @@ def add_album(request):
         album_form=AlbumForm()
     return render(request,"album_form.html",{"form":album_form})
 
+@login_required
 def edit_album(request,id):
     data=AlbumModel.objects.get(pk=id)
     album_form=AlbumForm(instance=data)
@@ -25,6 +28,7 @@ def edit_album(request,id):
         
     return render(request,"album_form.html",{"form":album_form})
 
+@login_required
 def delete_album(request,id):
     data=AlbumModel.objects.get(pk=id)
     data.delete()
